@@ -1,32 +1,33 @@
 export const ADD_TO_FAVOURITE = "ADD_TO_FAVOURITE";
 export const REMOVE_FROM_FAVOURITE = "REMOVE_FROM_FAVOURITE";
 
-/* export const GET_DATA = "GET_DATA";
+export const GET_DATA = "GET_DATA";
 
-export const baseEndpoint =
-  "https://strive-benchmark.herokuapp.com/api/jobs?company=";
+export const addToFAv = (company) => ({
+  type: ADD_TO_FAVOURITE,
+  payload: company,
+});
 
-const [jobs, setJobs] = useState([]);
-const params = useParams();
+export const removeFromFAv = (index) => ({
+  type: ADD_TO_FAVOURITE,
+  payload: index,
+});
 
-const getJobs = (params) => {
+export const getDataAction = (baseEndpoint, companyName) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(baseEndpoint + params.companyName);
-      if (response.ok) {
-        const { data } = await response.json();
-
+      const res = await fetch(baseEndpoint + companyName);
+      if (res.ok) {
+        const { data } = await res.json();
         dispatch({
           type: GET_DATA,
-          payload: { data },
+          payload: data,
         });
-
-        setJobs(data);
       } else {
-        alert("Error fetching results");
+        alert("An error occurred during the fect");
       }
     } catch (error) {
       console.log(error);
     }
   };
-}; */
+};

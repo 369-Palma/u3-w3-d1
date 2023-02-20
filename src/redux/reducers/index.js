@@ -1,4 +1,4 @@
-/* import { ADD_TO_FAVOURITE } from "../actions";
+import { ADD_TO_FAVOURITE } from "../actions";
 import { REMOVE_FROM_FAVOURITE } from "../actions";
 
 const initialState = {
@@ -31,4 +31,3 @@ const mainReducer = (state = initialState, action) => {
 };
 
 export default mainReducer;
- */

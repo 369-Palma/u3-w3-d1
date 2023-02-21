@@ -20,7 +20,7 @@ const Favourites = () => {
     <Container>
       <Row>
         <Col xs={10} className="mx-auto my-3">
-          <h1>Favourites</h1>
+          <h1>Preferiti</h1>
           <Button onClick={() => navigate("/")}>Home</Button>
         </Col>
         <Col xs={10} className="mx-auto my-3">

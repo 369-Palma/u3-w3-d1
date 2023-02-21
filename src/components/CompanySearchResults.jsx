@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Alert } from "react-bootstrap";
 import Job from "./Job";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_ERROR_MESSAGE } from "../redux/actions";
 
 const CompanySearchResults = () => {
+  const hasError = useSelector((state) => state.data.hasError);
+
+  const dispatch = useDispatch();
+
   const [jobs, setJobs] = useState([]);
   const params = useParams();
 
@@ -21,10 +27,17 @@ const CompanySearchResults = () => {
         const { data } = await response.json();
         setJobs(data);
       } else {
+        dispatch({
+          type: GET_ERROR_MESSAGE,
+          payload: "An error occurred during the call",
+        });
         alert("Error fetching results");
       }
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: GET_ERROR_MESSAGE,
+        payload: error,
+      });
     }
   };
 
@@ -32,6 +45,12 @@ const CompanySearchResults = () => {
     <Container>
       <Row>
         <Col>
+          {hasError && (
+            <Alert variant="danger">
+              {hasError ? hasError : "Something went wrong with your fetch"}
+            </Alert>
+          )}
+
           {jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
           ))}

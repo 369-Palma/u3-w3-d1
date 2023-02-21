@@ -14,7 +14,6 @@ import { removeFromFav } from "../redux/actions";
 const Favourites = () => {
   const favourites = useSelector((state) => state.favs.list);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   return (

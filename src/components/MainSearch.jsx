@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Job from "./Job";
 import { getDataAction } from "../redux/actions/index";
@@ -10,6 +10,7 @@ const MainSearch = () => {
 
   const navigate = useNavigate();
   const jobs = useSelector((state) => state.data.content);
+  const isLoading = useSelector((state) => state.data.isLoading);
   const dispatch = useDispatch();
 
   /* const baseEndpoint = 'https://strive-benchmark.herokuapp.com/api/jobs?search=' */
@@ -53,6 +54,9 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
+          {isLoading && (
+            <Spinner animation="border" variant="primary" className="my-2" />
+          )}
           {jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
           ))}

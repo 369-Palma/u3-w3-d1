@@ -1,11 +1,11 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 /* import mainReducer from '../reducers' */
 import favouritesReducer from "../reducers/favsReducer";
-import dataReducer from "../reducers/dataReducer";
+import dataReducer from "../reducers/data";
 
 const mainReducer = combineReducers({
   favs: favouritesReducer,
-  dataFetch: dataReducer,
+  data: dataReducer,
 });
 
 const store = configureStore({

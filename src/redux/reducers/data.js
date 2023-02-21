@@ -1,4 +1,4 @@
-import GET_DATA from "../actions/index";
+import { GET_DATA } from "../actions";
 
 const initialState = {
   content: [],

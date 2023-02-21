@@ -1,6 +1,5 @@
 export const ADD_TO_FAVOURITE = "ADD_TO_FAVOURITE";
 export const REMOVE_FROM_FAVOURITE = "REMOVE_FROM_FAVOURITE";
-
 export const GET_DATA = "GET_DATA";
 
 export const addToFav = (company) => ({
@@ -10,8 +9,8 @@ export const addToFav = (company) => ({
 
 const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
-export const removeFromFAv = (company) => ({
-  type: ADD_TO_FAVOURITE,
+export const removeFromFav = (company) => ({
+  type: REMOVE_FROM_FAVOURITE,
   payload: company,
 });
 

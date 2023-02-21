@@ -2,10 +2,10 @@ import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { addToFav, removeFromFAv } from "../redux/actions";
+import { addToFav, removeFromFav } from "../redux/actions";
 
 const Job = ({ data }) => {
-  const favourites = useSelector((state) => state.favourite.list);
+  const favourites = useSelector((state) => state.favs.list);
   const dispatch = useDispatch();
 
   const isFav = favourites.includes(data.company_name);
@@ -21,14 +21,14 @@ const Job = ({ data }) => {
             color="gold"
             size={16}
             className="mr-2 my-auto"
-            onClick={() => dispatch(removeFromFAv(data.company_name))}
+            onClick={() => dispatch(removeFromFav(data.company_name))}
           />
         ) : (
           <Star
             color="gold"
             size={16}
             className="mr-2 my-auto"
-            onClick={() => dispatch(addToFav(data.comapny_name))}
+            onClick={() => dispatch(addToFav(data.company_name))}
           />
         )}
         <Link to={`/${data.company_name}`}>{data.company_name}</Link>

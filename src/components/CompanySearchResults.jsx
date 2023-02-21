@@ -47,7 +47,7 @@ const CompanySearchResults = () => {
         <Col>
           {hasError && (
             <Alert variant="danger">
-              {hasError ? hasError : "Something went wrong with your fetch"}
+              {hasError ? hasError : "Something went wrong with the call"}
             </Alert>
           )}
 

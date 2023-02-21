@@ -3,20 +3,22 @@ export const REMOVE_FROM_FAVOURITE = "REMOVE_FROM_FAVOURITE";
 
 export const GET_DATA = "GET_DATA";
 
-export const addToFAv = (company) => ({
+export const addToFav = (company) => ({
   type: ADD_TO_FAVOURITE,
   payload: company,
 });
 
-export const removeFromFAv = (index) => ({
+const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
+
+export const removeFromFAv = (company) => ({
   type: ADD_TO_FAVOURITE,
-  payload: index,
+  payload: company,
 });
 
-export const getDataAction = (baseEndpoint, companyName) => {
+export const getDataAction = (query) => {
   return async (dispatch) => {
     try {
-      const res = await fetch(baseEndpoint + companyName);
+      const res = await fetch(baseEndpoint + query + "&limit=20");
       if (res.ok) {
         const { data } = await res.json();
         dispatch({

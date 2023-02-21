@@ -1,24 +1,28 @@
-import { useState } from 'react'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import Job from './Job'
+import { useState } from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import Job from "./Job";
+import { getDataAction } from "../redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 
 const MainSearch = () => {
-  const [query, setQuery] = useState('')
-  const [jobs, setJobs] = useState([])
+  const [query, setQuery] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const jobs = useSelector((state) => state.data.content);
+  const dispatch = useDispatch();
 
-  const baseEndpoint = 'https://strive-benchmark.herokuapp.com/api/jobs?search='
+  /* const baseEndpoint = 'https://strive-benchmark.herokuapp.com/api/jobs?search=' */
 
   const handleChange = (e) => {
-    setQuery(e.target.value)
-  }
+    setQuery(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    dispatch(getDataAction(query));
 
-    try {
+    /* try {
       const response = await fetch(baseEndpoint + query + '&limit=20')
       if (response.ok) {
         const { data } = await response.json()
@@ -28,15 +32,15 @@ const MainSearch = () => {
       }
     } catch (error) {
       console.log(error)
-    }
-  }
+    } */
+  };
 
   return (
     <Container>
       <Row>
         <Col xs={10} className="mx-auto my-3">
           <h1>Remote Jobs Search</h1>
-          <Button onClick={() => navigate('/favourites')}>Favourites</Button>
+          <Button onClick={() => navigate("/favourites")}>Favourites</Button>
         </Col>
         <Col xs={10} className="mx-auto">
           <Form onSubmit={handleSubmit}>
@@ -55,7 +59,7 @@ const MainSearch = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default MainSearch
+export default MainSearch;
